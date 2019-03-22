@@ -1,0 +1,35 @@
+<%- include('./includes/head.ejs') %>
+<%- include('./includes/navbar.ejs') %>
+
+<%- include('./includes/flashMessage.ejs') %>
+
+<% if (username !== null) { %>
+  <div class="container">
+    <div class="alert alert-success text-center" role="alert">Welcome <%= username %></div>
+  </div>
+<% } %> 
+
+<div class="container">
+  <h1 class="text-center my-3">Enter your todo or whatever</h1>
+  <form class="mb-3" action="http://localhost:5000/api/todos/" method="post">
+    <div class="input-group">
+      <input class="form-control"type="text" name="content" id="todos" required>
+      <div class="input-group-append">
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+    <ul class="list-group">
+      <% if (todos.length > 0) { %>
+        <% for (let todo of todos) { %>
+        <li class="list-group-item bg-light"><a href="/deleteTodo/<%= todo._id %>" class="btn btn-dark mr-2">X</a> <%= todo.content %> </li>
+        <% } %>
+      <% } else { %>
+        <div class="alert alert-primary" role="alert">
+          You have no todos to display.  Get started by typing a todo in the in the input bar above.
+        </div>
+      <% } %>
+    </ul>
+  </div>
+
+  <%- include('./includes/footer.ejs') %>

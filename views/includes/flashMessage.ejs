@@ -1,0 +1,7 @@
+<% if (flashMsg.length > 0) { %>
+  <% for (let msg of flashMsg) { %>
+    <div class="container mt-3">
+      <div class="alert alert-success"><%= msg %></div>
+    </div>
+  <% } %>
+<% } %>
